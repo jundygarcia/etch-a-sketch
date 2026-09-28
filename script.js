@@ -1,5 +1,13 @@
 const container = document.querySelector("#container");
 
+function randomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+
 function createGrid(size) {
   container.innerHTML = "";
   const squareSize = container.clientWidth / size;
@@ -10,8 +18,20 @@ function createGrid(size) {
     square.style.width = `${squareSize}px`;
     square.style.height = `${squareSize}px`;
     
+    square.dataset.darkness = 0;
+
     square.addEventListener("mouseenter", () => {
-        square.classList.add("colored"); //gives the square the colored class
+      let darkness = Number(square.dataset.darkness);
+
+      if (darkness === 0) {
+        square.style.backgroundColor = randomColor();
+      }
+
+      if (darkness < 10) {
+        darkness++;
+        square.dataset.darkness = darkness;
+        square.style.opacity = darkness / 10;
+      }
     });
     
     container.appendChild(square);
