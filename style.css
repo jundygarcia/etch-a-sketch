@@ -19,3 +19,6 @@ body {
   box-sizing: border-box;
   border: 1px solid #ddd;
 }
+.square.colored {
+  background-color: #222;
+}
