@@ -19,3 +19,20 @@ function createGrid(size) {
 }
 
 createGrid(16);
+
+const newGridButton = document.querySelector("#new-grid");
+
+newGridButton.addEventListener("click", () => {
+  const input = prompt("How many squares per side? (max 100)");
+
+  if (input === null) return; // they pressed Cancel
+
+  const size = parseInt(input);
+
+  if (isNaN(size) || size < 1 || size > 100) {
+    alert("Please enter a number from 1 to 100.");
+    return;
+  }
+
+  createGrid(size);
+});
